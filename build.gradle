@@ -9,7 +9,7 @@ buildscript {
         coroutines_version = "1.6.0"
         timber_version = "5.0.1"
         dagger_version = "2.41"
-        activity_version = "1.4.0"
+        activity_version = "1.6.0"
     }
     repositories {
         google()
