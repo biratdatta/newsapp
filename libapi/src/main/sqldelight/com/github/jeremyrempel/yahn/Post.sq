@@ -1,0 +1,30 @@
+CREATE TABLE post (
+    id INTEGER NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    text TEXT,
+    domain TEXT,
+    url TEXT,
+    points INTEGER NOT NULL,
+    unixTime INTEGER NOT NULL,
+    commentsCnt INTEGER NOT NULL,
+    lastUpdated INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    hasViewedPost INTEGER NOT NULL DEFAULT 0,
+    hasViewedComments INTEGER NOT NULL DEFAULT 0
+);
+
+insert:
+INSERT OR REPLACE INTO post (id, title, text, domain, url, points, unixTime, commentsCnt)
+VALUES (?,?,?,?,?,?,?,?);
+
+update:
+UPDATE post SET points = ?, commentsCnt = ?, lastUpdated = date('now') WHERE id = ?;
+
+selectPostById:
+SELECT * FROM post WHERE id = ?;
+
+markPostAsViewed:
+UPDATE post SET hasViewedPost = 1, lastUpdated = date('now') WHERE id = ?;
+
+markPostCommentAsViewed:
+UPDATE post SET hasViewedComments = 1, lastUpdated = date('now') WHERE id = ?;
